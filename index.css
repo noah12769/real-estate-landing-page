@@ -3585,3 +3585,189 @@
     padding-right: 16px !important;
   }
 }
+
+/* ============================================================
+   MOBILE FIX PASS 2 — éléments résiduels (Noah, 2026-05)
+   ============================================================ */
+
+/* Bloque le scroll horizontal sur toute la page */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+
+  /* ── 1. BANNER CONTENT (Tour 3D + Book a Time)
+         Problème : width 480px + flex-shrink:0 → déborde et se fait clipper
+  ── */
+  .banner-content {
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+    flex-shrink: 1 !important;
+    box-sizing: border-box !important;
+  }
+  .enjoy-a-full,
+  .virtual-tour {
+    width: 100% !important;
+    height: auto !important;
+    font-size: clamp(20px, 5.5vw, 36px) !important;
+    line-height: 1.2 !important;
+    flex-shrink: 1 !important;
+  }
+  .h3framer-text {
+    width: 100% !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+  }
+  .enjoy-a-full-wrapper {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+  .experience-the,
+  .home-in-person {
+    width: 100% !important;
+    height: auto !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* ── 2. FEATURES — kitchen-label : hauteur 19px fixe → coupe le texte
+  ── */
+  .kitchen-label {
+    height: auto !important;
+    width: auto !important;
+    flex: 1 1 auto !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    align-items: flex-start !important;
+  }
+  .amenity-private {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-shrink: 1 !important;
+  }
+  /* Empêche le default6 de clipper le texte */
+  .default6 {
+    overflow: visible !important;
+    flex-wrap: wrap !important;
+    min-height: 0 !important;
+    align-items: flex-start !important;
+  }
+  /* Garde le border visible via after12 */
+  .after12 {
+    border-radius: var(--br-16) !important;
+  }
+
+  /* ── 3. CONTACT BLOCKS — label-h3 min-width 387px → force la carte large
+  ── */
+  .label-h3 {
+    min-width: 0 !important;
+    width: 100% !important;
+    flex-shrink: 1 !important;
+  }
+  .h3framer-text2 {
+    width: 100% !important;
+  }
+
+  /* ── 4. LOCATION — image 760px de large + texte
+  ── */
+  .image-icon10 {
+    width: 100% !important;
+    height: 100% !important;
+    margin-top: 0 !important;
+    object-fit: cover !important;
+  }
+  .image-wrapper5 {
+    overflow: hidden !important;
+  }
+  /* Texte description location */
+  .property-overview .floors {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+  /* Heading "Escape the City" */
+  .question-label br {
+    display: none;
+  }
+  .question-label .cozy-cottage-in {
+    width: 100% !important;
+    height: auto !important;
+    white-space: normal !important;
+  }
+
+  /* ── 5. TESTIMONIAL — image-wrapper : grandit avec le contenu
+  ── */
+  .image-wrapper {
+    aspect-ratio: unset !important;
+    min-height: 480px;
+    height: auto;
+    overflow: hidden;
+  }
+  /* Image de fond s'adapte */
+  .image-icon2 {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 480px;
+    margin-top: 0 !important;
+  }
+  .pframer-text15 .sf {
+    width: 100% !important;
+    white-space: normal !important;
+  }
+  /* Quote icon */
+  .component-110 {
+    flex-shrink: 0 !important;
+  }
+
+  /* ── 6. GALLERY — galerie d'images responsive
+  ── */
+  .gallery {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .default-icon2,
+  .default-icon3 {
+    flex-shrink: 1 !important;
+  }
+
+  /* ── 7. OVERVIEW — icônes dans la grille
+  ── */
+  .div-container,
+  .second-container,
+  .third-container {
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* ── 8. HERO — info blocks (Property Type / Lot Size / etc.)
+  ── */
+  .container-hero-content {
+    overflow: visible !important;
+  }
+
+  /* ── 9. Sections — empêche le débordement latéral
+  ── */
+  .hero, .overview, .gallery, .features,
+  .location, .contact, .default37 {
+    overflow-x: hidden !important;
+  }
+}
+
+/* ── 375px et moins (iPhone SE) ── */
+@media screen and (max-width: 390px) {
+  .banner-content {
+    padding: 24px 16px !important;
+  }
+  .contact-block {
+    padding: 20px 16px !important;
+  }
+  .black,
+  .black2,
+  .black6 {
+    padding: 24px 12px !important;
+  }
+}
