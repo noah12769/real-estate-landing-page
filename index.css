@@ -3771,3 +3771,123 @@ html, body {
     padding: 24px 12px !important;
   }
 }
+
+/* ============================================================
+   MOBILE FIX PASS 3 — fix définitif (Noah, 2026-05)
+   ============================================================ */
+
+/* ── Bloquer le scroll horizontal sur le VRAI container (pas juste body) ── */
+.w-light {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+.end-of-bodystart {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+@media screen and (max-width: 768px) {
+
+  /* ── Toutes les sections : border-box + max-width 100% ── */
+  .hero, .overview, .gallery, .features,
+  .location, .contact, .default37,
+  .container-overview-content,
+  .container-gallery-content,
+  .container-features-content,
+  .container-location-content,
+  .container-footer-content {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* ── BOOK A TIME : le vrai problème ──
+     .home { font-size: 48px } → hérité par experience-the/home-in-person
+     → titres ~400px de large sur un écran 375px
+  ── */
+  .home {
+    font-size: clamp(18px, 5vw, 32px) !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+  .experience-the,
+  .home-in-person {
+    font-size: clamp(18px, 5vw, 32px) !important;
+    line-height: 1.15 !important;
+    width: 100% !important;
+    height: auto !important;
+    flex-shrink: 1 !important;
+    white-space: normal !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  /* ── 3D TOUR : même problème de font-size 48px ── */
+  .h3framer-text {
+    font-size: clamp(18px, 5vw, 32px) !important;
+    padding: 0 8px !important;
+  }
+  .enjoy-a-full,
+  .virtual-tour {
+    font-size: clamp(18px, 5vw, 32px) !important;
+    line-height: 1.15 !important;
+    width: 100% !important;
+    height: auto !important;
+    white-space: normal !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  /* ── BANNER CONTENT : forcer dans le viewport ── */
+  .banner-content {
+    width: calc(100vw - 80px) !important;
+    max-width: calc(100vw - 80px) !important;
+    box-sizing: border-box !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* ── TESTIMONIAL : forcer dans le viewport ── */
+  .testimonial-block {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .pframer-text15,
+  .pframer-text15 .sf {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+  }
+
+  /* ── FEATURES : icônes coupées à gauche
+     Le .default6 overflow:visible fait déborder .after12 (absolute)
+     → revenir à clip mais garder le contenu visible
+  ── */
+  .default6 {
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  .component-1 {
+    flex-shrink: 0 !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+  /* Supprimer le clip sur les icônes SVG */
+  .divider-icon {
+    position: relative !important;
+    width: 24px !important;
+    height: 24px !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+  }
+
+  /* ── Mot long ne déborde pas ── */
+  .floors, .lot-size, .property-type,
+  .sf, .jack-simons-owner, .acres, .cottage, .for-sale {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+}
