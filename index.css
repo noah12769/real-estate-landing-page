@@ -3884,10 +3884,141 @@ html, body {
     left: auto !important;
   }
 
-  /* ── Mot long ne déborde pas ── */
+    /* ── Mot long ne déborde pas ── */
   .floors, .lot-size, .property-type,
   .sf, .jack-simons-owner, .acres, .cottage, .for-sale {
     overflow-wrap: break-word !important;
     word-break: break-word !important;
   }
+}
+
+/* ============================================================
+   MOBILE FIX PASS 4 — logo nav + textes coupés (Noah, 2026-05)
+   ============================================================ */
+
+/* ── 1. NAV LOGO : masquer le nom de marque sur mobile, garder l'icône ── */
+@media screen and (max-width: 768px) {
+  .logo-menu-button .black7 > .map-link {
+    display: none;
+  }
+
+  /* ── 2. LOCATION : .pframer-text32 largeur fixe 446px → déborde ── */
+  .pframer-text32 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-shrink: 1 !important;
+    box-sizing: border-box !important;
+  }
+  .address-title-wrapper,
+  .address-title {
+    width: auto !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+  /* Row label/valeur : empêche les 59px fixes de clipper */
+  .default22 {
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 4px !important;
+  }
+
+  /* ── 3. FEATURES heading : .designed-for / .everyday-living largeurs fixes ── */
+  .designed-for,
+  .everyday-living {
+    width: 100% !important;
+    height: auto !important;
+    flex-shrink: 1 !important;
+    white-space: normal !important;
+  }
+  .designed-descriptor,
+  .h2framer-text3 > .next-division {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  /* ── 4. GALLERY heading : visual-tour-of / your-future-home largeurs fixes ── */
+  .visual-tour-of,
+  .your-future-home {
+    width: 100% !important;
+    height: auto !important;
+    flex-shrink: 1 !important;
+    white-space: normal !important;
+  }
+
+  /* ── 5. OVERVIEW heading : masquer les <br> forcés ── */
+  .h2framer-text br {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   iOS SAFARI FIXES — Pass 5 (Noah, 2026-05)
+   ============================================================ */
+
+/* ── 1. Tap highlight : supprime le flash bleu/gris au toucher ── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── 2. -webkit-backdrop-filter : iOS 15 et inférieur ── */
+.transparent,
+.testimonial-block,
+.default21,
+.logo-symbol,
+.nav-black,
+.nav-black2 {
+  -webkit-backdrop-filter: blur(7px);
+}
+.banner-content {
+  -webkit-backdrop-filter: blur(10px);
+}
+.contact-form-overlay {
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* ── 3. Navbar position:fixed — GPU compositing, évite le scintillement ── */
+.nav-bar {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* ── 4. Logo + boutons : pas de sélection de texte ni de callout au tap long ── */
+.logo-menu-button,
+.black7,
+.black8,
+.hamburger-btn,
+.mobile-menu-item,
+.white,
+.white2,
+.nav-black,
+.nav-black2 {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ── 5. Contact form panel : 100vh bugué sur iOS Safari (barre navigateur)
+         -webkit-fill-available = hauteur visible réelle sur iPhone ── */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .contact-form-panel {
+      height: 90svh;
+      height: -webkit-fill-available;
+    }
+  }
+}
+
+/* ── 6. Scroll horizontal : empêche le rubber-band d'exposer les débordements ── */
+.w-light {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: none;
+}
+
+/* ── 7. Curseur pointer sur éléments interactifs (iOS ne l'ajoute pas auto) ── */
+.black7, .black8, .white, .white2,
+.hamburger-btn, .mobile-menu-item,
+.nav-black, .nav-black2, .default21 {
+  cursor: pointer;
 }
