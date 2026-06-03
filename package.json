@@ -8,7 +8,7 @@
   "name": "claude",
   "scripts": {
     "start": "parcel ./*.html ",
-    "build": "parcel build ./*.html  --dist-dir ./build"
+    "build": "parcel build ./*.html  --dist-dir ./build && cp robots.txt ./build/robots.txt"
   },
   "version": "1.0.0"
 }
