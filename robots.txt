@@ -1,6 +1,2 @@
-# robots.txt — Real Estate Landing Page
-
 User-agent: *
-Allow: /
-
-Sitemap: /sitemap.xml
+Disallow: /
